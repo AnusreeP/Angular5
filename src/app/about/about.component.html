@@ -1,0 +1,122 @@
+
+<html>
+
+
+    
+  <div class="mainHead"><h1><b> Registraion Form</b></h1></div> 
+   <div class="containerBody">
+      <div class="subContainer">
+        
+        <div>
+        <label for = "name" class="textLabel"><h3>Name:</h3></label>
+        <input type = "text" id = "username" name="name" class="form-control nameTxt  formWidth" placeholder = "Enter Name " [(ngModel)]="name">
+          
+
+        </div>
+        <br>
+
+
+      <div>
+      <label for = "email" class="textLabel"><h3>Email:</h3> </label>
+      <input type = "email"  id = "email" class="form-control emailTxt formWidth" placeholder = "Enter Email " [(ngModel)]="email">
+      </div>
+      <br>
+
+      <div>
+      <label for = "phone" class="textLabel"><h3>Phone:</h3>  </label>
+      <input type = "text" id = "phone" class="form-control formWidth" placeholder = "Enter Phone " [(ngModel)]="phone">   
+      </div>
+      <br>
+
+
+        <div>
+            <label for = "phone" class="textLabel textG1"> <h3>Gender:</h3>  </label> 
+            <div class="genderText">
+              <input type="radio" [(ngModel)]="gender" name="gender" value="male" checked> Male
+              <input type="radio" [(ngModel)]="gender" name="gender" value="female"> Female<br>  
+             </div>
+        </div>
+        <br>
+   
+
+
+      <div>
+          <label for = "phone" class="textLabel"> <h3>Hobbies:</h3>  </label>
+          <input type = "text" id = "phone" class ="form-control HobbiTxt formWidth" placeholder = "Enter your hobbies " [(ngModel)]="hobbies">
+      </div>
+      <br>
+
+
+
+      <div>
+
+          <label for = "country" class="textLabel"> <h3>Country:</h3> </label>
+          <select class="cuntryText" [(ngModel)]="country">
+              <option value="India">India</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Canada">Canada</option>
+              <option value="China">China</option>
+              <option value="Australia">Australia </option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Mexico">Mexico</option>
+      
+          </select>
+      </div>
+      <br>
+
+
+      <div>
+          <label for = "phone" class="textLabel"> <h3>Address:</h3>  </label>
+          <textarea type = "text" id = "phone" class = "form-control HobbiTxt formWidth" placeholder = "Enter your address "[(ngModel)]="address"></textarea> 
+      </div> 
+      <br>
+
+
+      <div>
+          <input type="submit" class="regBtn "   value="Register"  (click)= "addRegItem()">
+
+      </div>
+      </div>
+   </div>
+
+
+<div class="col"  *ngIf="RegisterList.length>0">
+  
+   <table>
+              <thead class="mainHead" >
+									<th width="10%">Name</th>
+									<th width="10%">Email</th>
+									<th width="10%">Phone</th>
+									<th width="10%">Gender</th>
+									<th width="10%">Hobbies</th>
+									<th width="10%">Country</th>
+									<th width="10%">Address</th>
+									
+                </thead>
+                
+
+
+    <tr class="spacer-20"></tr>
+
+
+
+     <tbody>
+        <tr class="listReg"   *ngFor=" let user of RegisterList;let i = index">
+            <td>{{ user.name	 }}</td>
+
+
+            <td >{{ user.email }}</td>
+            <td >{{ user.phone }}</td>
+            <td >{{ user.gender }}</td>
+            <td >{{ user.hobbies }}</td>
+            <td >{{ user.country }}</td>
+            <td >{{ user.address }}</td>
+          </tr>
+      
+    </tbody>
+
+
+
+  </table>  
+</div>
+</html>
