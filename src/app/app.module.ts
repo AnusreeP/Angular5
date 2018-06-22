@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+// import { BrowserAnimationsmodule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +25,6 @@ import { SignupComponent } from './signup/signup.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

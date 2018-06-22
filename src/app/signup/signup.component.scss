@@ -1,10 +1,13 @@
 .signupfield{
     margin-top: 107px;
+    background: #41d3ea91;
+    border-radius: 10px;
+    width: 58%;
+    margin-left: 24%;
 }
 .SignName{
     font-family: cursive !important;
     margin-left: -102px !important;
-    color: white !important;
     font-weight: bold !important;
     position: absolute !important;
     font-size: 21px !important; 
@@ -14,8 +17,8 @@
     height: 45px;
     margin-left: 51px;
     background: #efefef !important;
-    /* color: #a53535 !important; */
     border-radius: 15px;
+    margin-top: 57px !important;
 }
 .signBtn{
     margin-top: 31px;
@@ -27,4 +30,8 @@
 }
 .validSingn{
     margin-left: 13%;
+}
+.loginhd{
+    font-size: 30px !important;
+
 }

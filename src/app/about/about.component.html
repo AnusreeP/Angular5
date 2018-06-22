@@ -1,36 +1,23 @@
 
-<html>
-<form  #f="ngForm"  name="form" (ngSubmit)="addRegItem(f)" novalidate> 
+<form  #f="ngForm"  name="form"  novalidate> 
     
   <div class="mainHead"><h1><b> Registraion Form</b></h1></div> 
 
    <div class="containerBody">
       <div class="subContainer">
 
-        
-    <!-- <div>
-        <label for = "name" class="textLabel"><h3>Name </h3></label>
-        <input type = "text" id = "username" name="name" class="form-control nameTxt  formWidth" placeholder = "Enter Name " [(ngModel)]="name">
-        </div>
-      <br>  -->
-
 
       <div>
           <label for = "nameVal" class="textLabel"><h3>Name </h3></label>
           <input name="nameVal" class="form-control nameTxt  formWidth" placeholder = "Enter Name "  [(ngModel)]="name"  #nameVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && nameVal.invalid }" required>
           <div *ngIf="f.submitted && nameVal.invalid" class="invalid-feedback">
+
               <div class="Regvalidate" *ngIf="nameVal.errors.required">Name is required</div>
           </div>
       </div>
       <br>
  
       
-
-      <!-- <div>
-      <label for = "email" class="textLabel"><h3>Email </h3> </label>
-      <input type = "email"  id = "email" class="form-control emailTxt formWidth" placeholder = "Enter Email " [(ngModel)]="email">
-      </div>
-      <br> -->
 
       <div>
           <label for = "emailVal" class="textLabel"><h3>Email </h3></label>
@@ -41,11 +28,6 @@
       </div>
       <br>
 
-      <!-- <div>
-      <label for = "phone" class="textLabel"><h3>Phone </h3>  </label>
-      <input type = "text" id = "phone" class="form-control formWidth" placeholder = "Enter Phone " [(ngModel)]="phone">   
-      </div>
-      <br> -->
 
       <div>
           <label for = "phoneVal" class="textLabel"><h3>Phone </h3></label>
@@ -72,7 +54,7 @@
  
       <div>
           <label class=" textLabel ContryLab"> <h3>Country</h3> </label>
-          <select class="cuntryText" [(ngModel)]="country">
+          <select class="cuntryText" name="country" [(ngModel)]="country">
               <option value="India">India</option>
               <option value="Brazil">Brazil</option>
               <option value="Canada">Canada</option>
@@ -85,12 +67,7 @@
       </div>
       <br>
 
-      <!-- <div>
-          <label for = "phone" class="textLabel"> <h3>Address</h3>  </label>
-          <textarea type = "text" id = "phone" class = "form-control HobbiTxt formWidth" placeholder = "Enter your address "[(ngModel)]="address"></textarea> 
-      </div> 
-      <br> -->
-
+    
       <div>
           <label for = "addressVal" class="textLabel"><h3>Address </h3></label>
           <input name="addressVal" class="form-control nameTxt  formWidth" placeholder = "Enter address "  [(ngModel)]="address"  #addressVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && addressVal.invalid }" required>
@@ -100,25 +77,31 @@
       </div>
       <br>
 
-     <div>
-          <label for = "phone" class="textLabel hobbiLab"> <h3>Hobbies</h3>  </label>
-          <input class="CheckText"  type="checkbox" [(ngModel)]="hobbies">Reading
-          <input   type="checkbox" ng-checked="all">Traveling
-          <input   type="checkbox" ng-checked="all">Photography
+     <div class="row">
+         <div class="col ">
+             <h3 class="textLabel">Please select your hobby</h3>
+         </div>
+         <div class="col">
+          <label for = "phone" class="" *ngFor="let hobby of myHobbies;let i =index"> 
+              <input type="checkbox" [checked]="checkedStatus(hobby)" name="hobby" (change)="selectedHobies(hobby.name,$event,i)" /> {{hobby.name}}
+          </label>
+          </div>
       </div>
       <br>
 
 
 
 
-      <div>
-          <input type="submit" class="regBtn "   value="Register"  (click)= "addRegItem()">
+      <div *ngIf="editMode=='false'">
+          <input type="submit" class="regBtn "   value="Register"  (click)= "addRegItem(f)">
       </div>
+      <div *ngIf="editMode=='true'">
+            <input type="submit" class="regBtn "   [value]="UpdateText"  (click)= "Update(f)">
+        </div>
 
 
 
       </div>
-
    </div>
 
 
@@ -147,17 +130,12 @@
      <tbody>
         <tr class="listReg "   *ngFor=" let user of RegisterList;let i = index">
             <td>{{ user.name}}</td>
-    
-
             <td >{{ user.email }}</td>
             <td >{{ user.phone }}</td>
             <td >{{ user.gender }}</td>
             <td >{{ user.country }}</td>
             <td >{{ user.address }}</td>
-            <td >{{ user.hobbies }}</td>
-            
-
-                
+            <td ><p *ngFor="let myhobby of user.hobbies">{{ myhobby }},</p></td>
             <td>
               <ul>
                 <li>
@@ -169,55 +147,10 @@
                 </li>
               </ul>
             </td>
-
-
           </tr>
     </tbody>
   </table>  
 </div>
 </form>
-</html> 
 
 
-<!-- 
-
-<html>
-    <div class="signupfield">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    
-                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                        <div class="form-group">
-                            <label class="SignName">User Name</label>
-                            <input type="text" formControlName="firstName" class="form-control inputSign" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                                <div class="validSingn" *ngIf="f.firstName.errors.required"> Name is required</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="SignName">Email</label>
-                            <input type="text" formControlName="email" class="form-control inputSign" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                            <div  *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                                <div class="validSingn" *ngIf="f.email.errors.required">Email is required</div>
-                                <div class="validSingn" *ngIf="f.email.errors.email">Email must be a valid email address</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="SignName">Password</label>
-                            <input type="password" formControlName="password" class="form-control inputSign" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                            <div class="validSingn" *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                <div class="validSingn" *ngIf="f.password.errors.required">Password is required</div>
-                                <div  class="validSingn" *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button [disabled]="loading" class="btn signBtn">Confirm</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-</html> -->
