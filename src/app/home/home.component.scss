@@ -5,15 +5,16 @@
 .col{
 	padding : .4em 1.3em; 
 }
-.container-dark{
-	background: #2885C4;
-	width: 84%;
-	margin-left: 5%;
+.FirstField{
+	background: #2885C4 !important;
+    width: 84%;
+    margin-left: 10%;
+    margin-top: 64px;
 }
-.container-light{
-	background : #57B3F1;
+.SecondField{
+	background : #57B3F1 !important;
 	width: 84%;
-	margin-left: 5%;
+	margin-left: 10%;
 }
 input.txt {
 	border:0;

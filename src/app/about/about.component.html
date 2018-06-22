@@ -1,56 +1,77 @@
 
 <html>
-
-
+<form  #f="ngForm"  name="form" (ngSubmit)="addRegItem(f)" novalidate> 
     
   <div class="mainHead"><h1><b> Registraion Form</b></h1></div> 
+
    <div class="containerBody">
       <div class="subContainer">
-        
-        <div>
-        <label for = "name" class="textLabel"><h3>Name:</h3></label>
-        <input type = "text" id = "username" name="name" class="form-control nameTxt  formWidth" placeholder = "Enter Name " [(ngModel)]="name">
-          
 
+        
+    <!-- <div>
+        <label for = "name" class="textLabel"><h3>Name </h3></label>
+        <input type = "text" id = "username" name="name" class="form-control nameTxt  formWidth" placeholder = "Enter Name " [(ngModel)]="name">
         </div>
-        <br>
+      <br>  -->
 
 
       <div>
-      <label for = "email" class="textLabel"><h3>Email:</h3> </label>
+          <label for = "nameVal" class="textLabel"><h3>Name </h3></label>
+          <input name="nameVal" class="form-control nameTxt  formWidth" placeholder = "Enter Name "  [(ngModel)]="name"  #nameVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && nameVal.invalid }" required>
+          <div *ngIf="f.submitted && nameVal.invalid" class="invalid-feedback">
+              <div class="Regvalidate" *ngIf="nameVal.errors.required">Name is required</div>
+          </div>
+      </div>
+      <br>
+ 
+      
+
+      <!-- <div>
+      <label for = "email" class="textLabel"><h3>Email </h3> </label>
       <input type = "email"  id = "email" class="form-control emailTxt formWidth" placeholder = "Enter Email " [(ngModel)]="email">
       </div>
-      <br>
+      <br> -->
 
       <div>
-      <label for = "phone" class="textLabel"><h3>Phone:</h3>  </label>
+          <label for = "emailVal" class="textLabel"><h3>Email </h3></label>
+          <input name="emailVal" class="form-control nameTxt  formWidth" placeholder = "Enter email "  [(ngModel)]="email"  #emailVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && emailVal.invalid }" required>
+          <div *ngIf="f.submitted && emailVal.invalid" class="invalid-feedback">
+              <div class="Regvalidate" *ngIf="emailVal.errors.required">Email is required</div>
+          </div>
+      </div>
+      <br>
+
+      <!-- <div>
+      <label for = "phone" class="textLabel"><h3>Phone </h3>  </label>
       <input type = "text" id = "phone" class="form-control formWidth" placeholder = "Enter Phone " [(ngModel)]="phone">   
+      </div>
+      <br> -->
+
+      <div>
+          <label for = "phoneVal" class="textLabel"><h3>Phone </h3></label>
+          <input name="phoneVal" class="form-control nameTxt  formWidth" placeholder = "Enter phone number "  [(ngModel)]="phone"  #phoneVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && phoneVal.invalid }" required>
+          <div *ngIf="f.submitted && phoneVal.invalid" class="invalid-feedback">
+              <div class="Regvalidate" *ngIf="phoneVal.errors.required">Phone number is required</div>
+          </div>
       </div>
       <br>
 
 
+
+
         <div>
-            <label for = "phone" class="textLabel textG1"> <h3>Gender:</h3>  </label> 
+            <label for = "phone" class="textLabel textG1"> <h3>Gender</h3>  </label> 
             <div class="genderText">
               <input type="radio" [(ngModel)]="gender" name="gender" value="male" checked> Male
               <input type="radio" [(ngModel)]="gender" name="gender" value="female"> Female<br>  
              </div>
         </div>
         <br>
-   
 
 
+ 
       <div>
-          <label for = "phone" class="textLabel"> <h3>Hobbies:</h3>  </label>
-          <input type = "text" id = "phone" class ="form-control HobbiTxt formWidth" placeholder = "Enter your hobbies " [(ngModel)]="hobbies">
-      </div>
-      <br>
-
-
-
-      <div>
-
-          <label for = "country" class="textLabel"> <h3>Country:</h3> </label>
+          <label class=" textLabel ContryLab"> <h3>Country</h3> </label>
           <select class="cuntryText" [(ngModel)]="country">
               <option value="India">India</option>
               <option value="Brazil">Brazil</option>
@@ -64,59 +85,139 @@
       </div>
       <br>
 
-
-      <div>
-          <label for = "phone" class="textLabel"> <h3>Address:</h3>  </label>
+      <!-- <div>
+          <label for = "phone" class="textLabel"> <h3>Address</h3>  </label>
           <textarea type = "text" id = "phone" class = "form-control HobbiTxt formWidth" placeholder = "Enter your address "[(ngModel)]="address"></textarea> 
       </div> 
+      <br> -->
+
+      <div>
+          <label for = "addressVal" class="textLabel"><h3>Address </h3></label>
+          <input name="addressVal" class="form-control nameTxt  formWidth" placeholder = "Enter address "  [(ngModel)]="address"  #addressVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && addressVal.invalid }" required>
+          <div *ngIf="f.submitted && addressVal.invalid" class="invalid-feedback">
+              <div class="Regvalidate" *ngIf="addressVal.errors.required">Name is required</div>
+          </div>
+      </div>
       <br>
+
+     <div>
+          <label for = "phone" class="textLabel hobbiLab"> <h3>Hobbies</h3>  </label>
+          <input class="CheckText"  type="checkbox" [(ngModel)]="hobbies">Reading
+          <input   type="checkbox" ng-checked="all">Traveling
+          <input   type="checkbox" ng-checked="all">Photography
+      </div>
+      <br>
+
+
 
 
       <div>
           <input type="submit" class="regBtn "   value="Register"  (click)= "addRegItem()">
+      </div>
+
+
 
       </div>
-      </div>
+
    </div>
 
 
-<div class="col"  *ngIf="RegisterList.length>0">
+   <div class="spacer-60"></div>
+
+<div class="ListForm  " *ngIf="RegisterList.length>0">
   
-   <table>
+   <table *ngIf="RegisterList.length>0">
               <thead class="mainHead" >
+              
 									<th width="10%">Name</th>
 									<th width="10%">Email</th>
 									<th width="10%">Phone</th>
 									<th width="10%">Gender</th>
-									<th width="10%">Hobbies</th>
 									<th width="10%">Country</th>
-									<th width="10%">Address</th>
+                                    <th width="10%">Address</th>
+                                    <th width="10%">Hobbies</th>
+                                    <th Width="10">Choice</th>
 									
                 </thead>
-                
 
-
-    <tr class="spacer-20"></tr>
+    <tr class="spacer-60"></tr>
 
 
 
      <tbody>
-        <tr class="listReg"   *ngFor=" let user of RegisterList;let i = index">
-            <td>{{ user.name	 }}</td>
-
+        <tr class="listReg "   *ngFor=" let user of RegisterList;let i = index">
+            <td>{{ user.name}}</td>
+    
 
             <td >{{ user.email }}</td>
             <td >{{ user.phone }}</td>
             <td >{{ user.gender }}</td>
-            <td >{{ user.hobbies }}</td>
             <td >{{ user.country }}</td>
             <td >{{ user.address }}</td>
+            <td >{{ user.hobbies }}</td>
+            
+
+                
+            <td>
+              <ul>
+                <li>
+                 
+                  <input type="submit" class="editfom btn-info"   value="Edit"  (click)="editRegItem(i)">
+
+                  <input type="submit" class="deletefom "   value="Delete"  (click)="deleteRegItem(i)">
+
+                </li>
+              </ul>
+            </td>
+
+
           </tr>
-      
     </tbody>
-
-
-
   </table>  
 </div>
-</html>
+</form>
+</html> 
+
+
+<!-- 
+
+<html>
+    <div class="signupfield">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label class="SignName">User Name</label>
+                            <input type="text" formControlName="firstName" class="form-control inputSign" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                <div class="validSingn" *ngIf="f.firstName.errors.required"> Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="SignName">Email</label>
+                            <input type="text" formControlName="email" class="form-control inputSign" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                            <div  *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div class="validSingn" *ngIf="f.email.errors.required">Email is required</div>
+                                <div class="validSingn" *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="SignName">Password</label>
+                            <input type="password" formControlName="password" class="form-control inputSign" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <div class="validSingn" *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div class="validSingn" *ngIf="f.password.errors.required">Password is required</div>
+                                <div  class="validSingn" *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button [disabled]="loading" class="btn signBtn">Confirm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</html> -->

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-about',
@@ -8,54 +9,99 @@ import { Router } from '@angular/router';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-
+  registerForm: FormGroup;
+  submitted = false;
   name: string ='';
   email: string ='';
   phone: string = '';
-  hobbies: string = '';
   gender: string = '';
-  country: string = '';
+  country: string = 'India';
   address: string = '';
+  hobbies: string = '';
 
 	RegisterList = [];
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      name: ['', Validators.required]
+      // lastName: ['', Validators.required],
+      // email: ['', [Validators.required, Validators.email]],
+      // password: ['', [Validators.required, Validators.minLength(6)]]
+  });
+    
+
+  }
+  get f() { return this.registerForm.controls; }
+
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+        return;
+    }
+
+    alert('SUCCESS!! :-)')
+  
+
   }
 
 
-  addRegItem(){
 
-    this.RegisterList.push({'name': this.name,
-    'email': this.email,
-    'phone': this.phone,
-    'gender': this.gender,
-    'hobbies': this.hobbies,
-    'country': this.country,
-    'address': this.address});
-    this.name = '';
-
-//this.RegisterList.push({'email': this.email});
-    this.email = '';
-
-    //this.RegisterList.push({'phone': this.phone});
-    this.phone = '';
-
-
-    //this.RegisterList.push({'gender': this.gender});
-    this.gender = '';
-
-    //this.RegisterList.push({'hobbies': this.hobbies});
-    this.hobbies = '';
-
-    //this.RegisterList.push({'country': this.country});
-    this.country = '';
-
-    //this.RegisterList.push({'address': this.address});
-    this.address = '';
+   addRegItem(ngForm)
+   {
     
+    this.submitted = true;
+
+     if(ngForm.invalid)
+     {
+       return;
+     }
+     else{
+      this.RegisterList.push({
+      'name': this.name,
+      'email': this.email,
+      'phone': this.phone,
+      'gender': this.gender,
+      'hobbies': this.hobbies,
+      'country': this.country,
+      'address': this.address});
+ 
+      // this.name = '';
+      // this.email = '';
+      // this.phone = '';
+      // this.gender = '';
+      // this.hobbies = '';
+      // this.country = '';
+      // this.address = '';
+ 
+     }
+
+    
+     }
+
+    editRegItem(i){
+      this.name=this.RegisterList[i] ['name'];
+      this.email=this.RegisterList[i] ['email'];
+      this.phone=this.RegisterList[i] ['phone'];
+      this.gender=this.RegisterList[i] ['gender'];
+      this.hobbies=this.RegisterList[i] ['hobbies'];
+      this.country=this.RegisterList[i] ['country'];
+      this.address=this.RegisterList[i] ['address'];
+
     }
+
+
+    deleteRegItem(i)
+    {
+	      this.RegisterList.splice(i,1);
+    }
+
+
+
 
 
 
