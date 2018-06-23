@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SignupComponent } from './signup/signup.component';
     AppComponent,
     HomeComponent,
     AboutComponent,
-    SignupComponent
+    SignupComponent,
+    ContactComponent
 
     
   ],
