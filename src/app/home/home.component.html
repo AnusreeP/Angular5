@@ -1,49 +1,13 @@
 <html>
-<!-- 
-<style>
-body{
-	background-image: url("E:\MynewAngular5\Angular5\src\assets\Images\pexels-photo-248797.jpeg");
-}	
-</style> -->
 
 
+<p class="visual">Visual Goal Setting for Success...</p>
 
 
-
-<style type="text/css">
-
-    body {
-      background-image:url('');
-      width: 100%;
-      height: 100%;
-    }
-
-</style>
-
-
-
-
-
-
-
-
-			<!-- <div  
-			class="navbar navbar-inverse" 
-			class="jumbotron text-center"
-			class ="text-primary">
-			<h1  class="text-info">  My First Page  </h1>
-		<button type="button" class="btn btn-success">Button1</button>
-		<button type="button" class="btn btn-success">Button2</button>
-		<button type="button" class="btn btn-success">Button3</button>
-	</div> -->
-	
-
-	
-
-
+<div class="FeildSet">
 <div class= "FirstField">
 		<div class="col">
-				<h3>Add a bucket list item</h3>
+				<h3>Share Your Goals</h3>
 		</div>
 		<div class="col">
 			<p>Your bucket list ({{ itemCount }})  </p>
@@ -52,7 +16,7 @@ body{
 	
 	<div class= "SecondField">
 		<div class="col paddingList">
-			<p class="sm"> Use this form below to add your bucket list goal.What do you want to do?</p>
+			<p class="sm"> Use this form below to add your goals.What do you want to do?</p>
 			<form>
 				<input type="text" name="item" class="txt" placeholder="Life goals"  [(ngModel)]="goalText" >
 				<input type="submit" class="btn" [value]="btnText"  (click)= "addItem()">
@@ -66,5 +30,5 @@ body{
 		
 		</div>
 	</div>
- 
+ </div>
 </html>
