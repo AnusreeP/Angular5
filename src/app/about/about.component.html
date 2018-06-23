@@ -7,40 +7,46 @@
       <div class="subContainer">
 
 
-      <div>
-          <label for = "nameVal" class="textLabel"><h3>Name </h3></label>
-          <input name="nameVal" class="form-control nameTxt  formWidth" placeholder = "Enter Name "  [(ngModel)]="name"  #nameVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && nameVal.invalid }" required>
-          <div *ngIf="f.submitted && nameVal.invalid" class="invalid-feedback">
+            <div>
+            <label for = "nameVal" class="textLabel"><h3>Name </h3></label>
+                <input type="text" class="form-control nameTxt  formWidth" placeholder = "Enter Name " name="firstNameVal" [(ngModel)]="name" #nameVal="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && nameVal.invalid }" required minlength="3" />
+                <div *ngIf="f.submitted && nameVal.invalid" class="invalid-feedback">
+                    <div class="Regvalidate" *ngIf="nameVal.errors.required">Name is required</div>
+                    <div class="Regvalidate" *ngIf="nameVal.errors.minlength">Name must be at least 3 characters</div>
+                </div>
+            </div>
+            <br>
 
-              <div class="Regvalidate" *ngIf="nameVal.errors.required">Name is required</div>
-          </div>
-      </div>
-      <br>
- 
+    
+        <div >
+            <label for = "emailVal" class="textLabel"><h3>Email </h3></label>
+            <input type="text" class="form-control nameTxt  formWidth" placeholder = "Enter email " name="emailVal" [(ngModel)]="email" #emailVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && emailVal.invalid }"
+                required email/>
+            <div *ngIf="f.submitted && emailVal.invalid" class="invalid-feedback">
+                <div class="Regvalidate" *ngIf="emailVal.errors.required">Email is required</div>
+                <div class="Regvalidate" *ngIf="emailVal.errors.email">Email must be a valid email address</div>
+            </div>
+        </div>
+        <br>
+
+
       
-
-      <div>
-          <label for = "emailVal" class="textLabel"><h3>Email </h3></label>
-          <input name="emailVal" class="form-control nameTxt  formWidth" placeholder = "Enter email "  [(ngModel)]="email"  #emailVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && emailVal.invalid }" required>
-          <div *ngIf="f.submitted && emailVal.invalid" class="invalid-feedback">
-              <div class="Regvalidate" *ngIf="emailVal.errors.required">Email is required</div>
-          </div>
-      </div>
-      <br>
-
-
-      <div>
-          <label for = "phoneVal" class="textLabel"><h3>Phone </h3></label>
-          <input name="phoneVal" class="form-control nameTxt  formWidth" placeholder = "Enter phone number "  [(ngModel)]="phone"  #phoneVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && phoneVal.invalid }" required>
-          <div *ngIf="f.submitted && phoneVal.invalid" class="invalid-feedback">
-              <div class="Regvalidate" *ngIf="phoneVal.errors.required">Phone number is required</div>
-          </div>
-      </div>
-      <br>
+            <div>
+                <label for = "phoneVal" class="textLabel"><h3>Phone </h3></label>
+                <input type="text" class="form-control nameTxt  formWidth" placeholder= "Enter phone number" pattern="^[0-9_-]{10}$" name="phoneVal" [(ngModel)]="phone"
+                #phoneVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && phoneVal.invalid }" required
+                />
+                <div *ngIf="f.submitted && phoneVal.invalid" class="invalid-feedback">
+                    <div class="Regvalidate" *ngIf="phoneVal.errors.required">Phone number is required</div>
+                 <div class="Regvalidate" *ngIf="phoneVal.errors.minlength">Min length needed</div> 
+                    <div class="Regvalidate" *ngIf="phoneVal.errors.pattern">Invalid phone number</div>
+                </div>
+            </div>
+            <br>
 
 
-
-
+       
         <div>
             <label for = "phone" class="textLabel textG1"> <h3>Gender</h3>  </label> 
             <div class="genderText">
@@ -72,14 +78,17 @@
           <label for = "addressVal" class="textLabel"><h3>Address </h3></label>
           <input name="addressVal" class="form-control nameTxt  formWidth" placeholder = "Enter address "  [(ngModel)]="address"  #addressVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && addressVal.invalid }" required>
           <div *ngIf="f.submitted && addressVal.invalid" class="invalid-feedback">
-              <div class="Regvalidate" *ngIf="addressVal.errors.required">Name is required</div>
+              <div class="Regvalidate" *ngIf="addressVal.errors.required">Address is required</div>
           </div>
       </div>
       <br>
 
+
+
+
      <div class="row">
          <div class="col ">
-             <h3 class="textLabel">Please select your hobby</h3>
+             <h3 class="hobbiLab">Please select your hobby</h3>
          </div>
          <div class="col">
           <label for = "phone" class="" *ngFor="let hobby of myHobbies;let i =index"> 
