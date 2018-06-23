@@ -13,10 +13,12 @@ const routes: Routes = [
       path : 'About',
       component: AboutComponent
     },
+    
     {
       path : 'signup',
       component: SignupComponent
-    },    
+    }
+   
 ];
 
 @NgModule({
